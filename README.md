@@ -11,3 +11,20 @@ References:
 
 ## Usage
 
+```
+class ModelTest(nn.Module):
+  def __init__(self, **kwargs):
+    super(ModelTest, self).__init__()
+    dims = 10
+    self.time_emb = TimeEmbedding(20, dims)
+    self.uid_emb  = nn.Embedding(20, dims)
+
+  def forward(self, input_time, input_idx):
+    time_emb = self.time_emb(input_time, input_idx)
+    uid_emb  = self.uid_emb(input_time, input_idx)
+
+    emb      = (time_emb + uid_emb)/2
+    ...
+    return 
+
+```
